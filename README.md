@@ -51,28 +51,28 @@ This is a submission for [Upgrade StackUp Invaders Bounty](https://platform.camp
 
 ### Upgrades Implemented
 
-- Reading player's NFT inventory and resume level (refer `getNftByAccount` function [here](/site/login.js#L1148-L167))
+- Reading player's NFT inventory and resume level (refer `getNftByAccount` function [here](/site/login.js#L148-L167))
 
   - this helps ensure each player has only one NFT
-  - player will be able to start game with their upgraded spaceship and resume with their previous level based on their NFT metadata (refer `getUserLevel` function [here](/site/login.js), how it's called in `setup` function [here](/site/sketch.js) & how`setup` function is called in `draw` function [here](/site/sketch.js) when userProfile changes)
+  - player will be able to start game with their upgraded spaceship and resume with their previous level based on their NFT metadata (refer `getUserLevel` function [here](/site/login.js#L227-L248), how it's called in `setup` function [here](/site/sketch.js#L28) & which is then called in `draw` function [here](/site/sketch.js#L99-102) when userProfile changes)
 
 - Minting just one NFT for every new player and refreshing metadata on subsequent levels up
 
-  - we mint NFT for Level 1 badge (refer `mintNft` function [here](/site/login.js))
-  - on subsequent levels, we call immutable api to refresh metadata (refer codes [here](/functions/upgradeNft/index.mjs))
+  - we only mint NFT when claiming Level 1 badge (refer [here](/site/login.js#L132-L138))
+  - on subsequent levels, we call immutable api to refresh metadata (refer codes for `upgradeNft` function [here](/site/login.js#L260-L279) and the corresponding serverless function [here](/functions/upgradeNft/index.mjs))
 
 - Increasing difficult of game by increasing the points needed to collect to uplevel
 
-  - now user need to collect at least 100 points to level up instead of 50 points (refer [here](/site/Player.js))
+  - now user need to collect at least 100 points to level up instead of 50 points (refer [here](/site/Player.js#L144-L156))
 
 - Having more achievement milestones
 
-  - now user can achieve up to level 4 (refer [here](/site/Player.js))
+  - now user can achieve up to level 4 (refer [here](/site/Player.js#L144-L156))
 
-- Increasing security by
+- Enhancing security by
 
   - moving grantMinterRole logic to backend (serverless function) to prevent wallet private key from being exposed to the public (refer `grantMinterRole` function [here](/functions/grantMinterRole/index.mjs))
-  - moving refreshMetadata logic to backend (serverless function) to prevent immutable API key from being exposed to the public (refer [here](/functions/uphradeNft/index.mjs))
+  - moving refreshMetadata logic to backend (serverless function) to prevent immutable API key from being exposed to the public (refer [here](/functions/upgradeNft/index.mjs))
 
 ## Built With
 
