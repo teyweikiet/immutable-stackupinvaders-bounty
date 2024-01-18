@@ -51,7 +51,7 @@ This is a submission for [Upgrade StackUp Invaders Bounty](https://platform.camp
 
 ### Upgrades Implemented
 
-- Reading player's NFT inventory and resume level (refer `getNftByAccount` function [here](/site/login.js))
+- Reading player's NFT inventory and resume level (refer `getNftByAccount` function [here](/site/login.js#L1148-L167))
 
   - this helps ensure each player has only one NFT
   - player will be able to start game with their upgraded spaceship and resume with their previous level based on their NFT metadata (refer `getUserLevel` function [here](/site/login.js), how it's called in `setup` function [here](/site/sketch.js) & how`setup` function is called in `draw` function [here](/site/sketch.js) when userProfile changes)

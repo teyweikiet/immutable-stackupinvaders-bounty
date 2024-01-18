@@ -21,7 +21,15 @@ class Player {
     if (userLevel) {
       Object.assign(this.nftShown, { [userLevel]: true })
     }
-    this.score = userLevel * 100
+    this.score = userLevel == 1
+      ? 100
+      : userLevel == 2
+      ? 200
+      : userLevel == 3
+      ? 350
+      : userLevel == 4
+      ? 550
+      : 0
     this.resumeCount = userLevel
     if (userLevel >= 2) {
       this.upgradeSpaceship()
