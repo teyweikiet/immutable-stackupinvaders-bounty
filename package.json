@@ -1,0 +1,27 @@
+{
+  "name": "immutable-stackupinvaders",
+  "version": "1.0.0",
+  "description": "StackUp Invaders(twk415) Immutable Game",
+  "main": "Alien.js",
+  "scripts": {
+    "start:local": "netlify dev",
+    "start:ngrok": "concurrently \"npm run start:local\" \"ngrok http 8888 --domain=regular-fun-egret.ngrok-free.app\"",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:netlify": "netlify deploy --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.5.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.5.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "netlify-cli": "^17.10.1",
+    "ngrok": "^5.0.0-beta.2"
+  }
+}
