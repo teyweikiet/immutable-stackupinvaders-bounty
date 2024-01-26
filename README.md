@@ -11,7 +11,7 @@
     <br />
     <a href="https://immutable-stackupinvaders-bounty.netlify.app/"><strong>View Demo</strong></a>
     |
-    <a href="https://explorer.testnet.immutable.com/address/0xcecbb48a29c8a347d7f53c03ac7d6a7e487958e0"><strong>Block Explorer</strong></a>
+    <a href="https://explorer.testnet.immutable.com/address/0x1eac82d5cdc4b3663c5a437ddd0acfbb91f353e9"><strong>Block Explorer</strong></a>
     <br />
   </p>
 </div>

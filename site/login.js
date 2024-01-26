@@ -28,7 +28,7 @@ const passportLogout = async function () {
 
 const CHAIN_NAME = 'imtbl-zkevm-testnet'
 // TODO: Replace CONTRACT_ADDRESS
-const CONTRACT_ADDRESS = '0xcecbb48a29c8a347d7f53c03ac7d6a7e487958e0' // process.env.CONTRACT_ADDRESS
+const CONTRACT_ADDRESS = '0x1eac82d5cdc4b3663c5a437ddd0acfbb91f353e9' // process.env.CONTRACT_ADDRESS
 
 const CONTRACT_ABI = [
   'function grantRole(bytes32 role, address account)',
@@ -202,10 +202,12 @@ const mintNft = async function () {
       const TOKEN_ID = getNextTokenId(contract)
 
       const currentGasPrice = await provider.getGasPrice()
-      const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('10', 'gwei'))
+      // const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('10', 'gwei'))
 
       const tx = await contract.mint(userAddress, TOKEN_ID, {
-        gasPrice: adjustedGasPrice // for pre-EIP-1559
+        maxPriorityFeePerGas: 100e9, // 100 Gwei
+        maxFeePerGas: 150e9,
+        gasLimit: 200000,
       })
 
       const receipt = await tx.wait()
