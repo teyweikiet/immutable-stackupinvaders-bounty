@@ -199,7 +199,7 @@ const mintNft = async function () {
         await grantMinterRole(userAddress)
       }
 
-      const TOKEN_ID = getNextTokenId(contract)
+      const TOKEN_ID = await getNextTokenId(contract)
 
       const currentGasPrice = await provider.getGasPrice()
       // const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('10', 'gwei'))
@@ -216,13 +216,23 @@ const mintNft = async function () {
       nft.innerHTML += `
         <div class="alert alert-success">
           NFT minted successfully! Transaction hash: ${receipt.transactionHash}
+          &nbsp;<a href="/nft.html?id=${TOKEN_ID}">View your badge here</a>
         </div>
       `
+      showViewBadgeButton(TOKEN_ID)
     } catch (error) {
       console.error('Error minting the first NFT:', error)
     }
   } else {
     console.log('No provider found.')
+  }
+}
+
+const showViewBadgeButton = function (tokenId) {
+  if (tokenId) {
+    const btn = window.document.getElementById('view-badge')
+    btn.href = `/nft.html?id=${tokenId}`
+    btn.hidden = false
   }
 }
 
@@ -233,6 +243,7 @@ const mintNft = async function () {
  */
 const getUserLevel = async function () {
   const nft = await getNftByAccount()
+  nft?.token_id && showViewBadgeButton(nft.token_id)
   // determine level based on NFT name
   switch (nft?.name) {
     case 'Level 1 Badge':
@@ -288,12 +299,14 @@ const upgradeNft = async function (level) {
       nft.innerHTML += `
         <div class="alert alert-success">
           Your spaceship has been upgraded! So has your NFT.
+          &nbsp;<a href="/nft.html?id=${token_id}">View your badge here.</a>
         </div>
       `
     } else {
       nft.innerHTML += `
         <div class="alert alert-success">
           Your level is up again! So has your NFT.
+          &nbsp;<a href="/nft.html?id=${token_id}">View your badge here</a>
         </div>
       `
     }

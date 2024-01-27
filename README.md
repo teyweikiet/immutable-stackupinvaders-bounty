@@ -54,12 +54,18 @@ This is a submission for [Upgrade StackUp Invaders Bounty](https://platform.camp
 - Reading player's NFT inventory and resume level (refer `getNftByAccount` function [here](/site/login.js#L148-L167))
 
   - this helps ensure each player has only one NFT
-  - player will be able to start game with their upgraded spaceship and resume with their previous level based on their NFT metadata (refer `getUserLevel` function [here](/site/login.js#L227-L248), how it's called in `setup` function [here](/site/sketch.js#L28) & which is then called in `draw` function [here](/site/sketch.js#L99-102) when userProfile changes)
+  - player will be able to start game with their upgraded spaceship and resume with their previous level based on their NFT metadata (refer `getUserLevel` function [here](/site/login.js#L239-L259), how it's called in `setup` function [here](/site/sketch.js#L28) & which is then called in `draw` function [here](/site/sketch.js#L99-102) when userProfile changes)
 
 - Minting just one NFT for every new player and refreshing metadata on subsequent levels up
 
   - we only mint NFT when claiming Level 1 badge (refer [here](/site/login.js#L132-L138))
-  - on subsequent levels, we call immutable api to refresh metadata (refer codes for `upgradeNft` function [here](/site/login.js#L260-L279) and the corresponding serverless function [here](/functions/upgradeNft/index.mjs))
+  - on subsequent levels, we call immutable api to refresh metadata (refer codes for `upgradeNft` function [here](/site/login.js#L273-L316) and the corresponding serverless function [here](/functions/upgradeNft/index.mjs))
+
+- View NFT metadata page
+
+  - added new route /nft.html?id={tokenID} (refer html code [here](/site/nft.html) and JavaScript code [here](/site/nft.js)) for users to view their NFT metadata since immutable explorer doesn't support metadata refresh yet
+  - added links for user to easily navigate to their nft metadata page next to logout button and successful minting/upgrading message (refer `showViewBadgeButton` function [here](/site/login.js#231-237))
+
 
 - Increasing difficult of game by increasing the points needed to collect to uplevel
 
@@ -126,8 +132,11 @@ npm run start:local
 
 ### Deploying to Netlify
 
-1. Deploy to Netlify
+1. Refer `.env.example` for environment variables needed. Add those environment variables to Site Configuration on Netlify dashboard
+
+2. Deploy to Netlify on your local terminal
 ```sh
 npm run deploy:netlify
 ```
 
+P/S: Disable automatic publishing on Netlify dashboard as current setup does not support deployment from github.
