@@ -216,7 +216,7 @@ const mintNft = async function () {
       nft.innerHTML += `
         <div class="alert alert-success">
           NFT minted successfully! Transaction hash: ${receipt.transactionHash}
-          &nbsp;<a href="/nft.html?id=${TOKEN_ID}">View your badge here</a>
+          &nbsp;<a href="/nft.html?id=${TOKEN_ID}" target="_blank">View your badge here</a>
         </div>
       `
       showViewBadgeButton(TOKEN_ID)
@@ -299,14 +299,14 @@ const upgradeNft = async function (level) {
       nft.innerHTML += `
         <div class="alert alert-success">
           Your spaceship has been upgraded! So has your NFT.
-          &nbsp;<a href="/nft.html?id=${token_id}">View your badge here.</a>
+          &nbsp;<a href="/nft.html?id=${token_id}" target="_blank">View your badge here.</a>
         </div>
       `
     } else {
       nft.innerHTML += `
         <div class="alert alert-success">
           Your level is up again! So has your NFT.
-          &nbsp;<a href="/nft.html?id=${token_id}">View your badge here</a>
+          &nbsp;<a href="/nft.html?id=${token_id}" target="_blank">View your badge here</a>
         </div>
       `
     }
